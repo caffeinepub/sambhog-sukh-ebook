@@ -6,12 +6,14 @@ import type {
   PricingSection,
   Testimonial,
 } from "../backend.d";
-import { useActor } from "./useActor";
+
+const STORAGE_KEY = "sambhog_sukh_page_content";
 
 const DEFAULT_CONTENT: PageContent = {
   heroSection: {
-    bookTitle: "सम्भोग सुख:",
-    subtitle: "पूर्ण नारीत्रिकं, वैवाहिक जीवन के आयुर्वेदिक और गार्हस्थिक रहस्य",
+    bookTitle: "सम्भोग सुख",
+    subtitle:
+      "वैवाहिक जीवन के आयुर्वेदिक और गार्हस्थिक रहस्य — वो बातें जो कोई नहीं बताता",
     tagline: "वो बातें जो कोई आपको नहीं बताता",
     ctaButtonText: "अभी खरीदें",
     ctaLink: "#pricing",
@@ -33,8 +35,8 @@ const DEFAULT_CONTENT: PageContent = {
   },
   ebookCoverImageUrl: "/assets/generated/ebook-cover.dim_400x560.png",
   pricingSection: {
-    originalPrice: BigInt(299),
-    discountedPrice: BigInt(199),
+    originalPrice: BigInt(199),
+    discountedPrice: BigInt(49),
     upiLink: "#buy",
     qrCodeImageUrl: "/assets/generated/qr-placeholder.dim_200x200.png",
   },
@@ -54,71 +56,124 @@ const DEFAULT_CONTENT: PageContent = {
   ],
 };
 
+// ─── LocalStorage helpers ────────────────────────────────────────────────────
+
+function loadFromStorage(): PageContent | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    // Restore BigInt fields
+    parsed.pricingSection.originalPrice = BigInt(
+      parsed.pricingSection.originalPrice,
+    );
+    parsed.pricingSection.discountedPrice = BigInt(
+      parsed.pricingSection.discountedPrice,
+    );
+    return parsed as PageContent;
+  } catch {
+    return null;
+  }
+}
+
+function saveToStorage(content: PageContent): void {
+  try {
+    // Serialize BigInt as string for JSON
+    const serializable = {
+      ...content,
+      pricingSection: {
+        ...content.pricingSection,
+        originalPrice: Number(content.pricingSection.originalPrice),
+        discountedPrice: Number(content.pricingSection.discountedPrice),
+      },
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(serializable));
+  } catch {
+    // ignore storage errors
+  }
+}
+
+// ─── Hooks ───────────────────────────────────────────────────────────────────
+
 export function usePageContent() {
-  const { actor, isFetching } = useActor();
   return useQuery<PageContent>({
     queryKey: ["pageContent"],
     queryFn: async () => {
-      if (!actor) return DEFAULT_CONTENT;
-      try {
-        const data = await actor.getPageContent();
-        // If hero section is empty, use defaults
-        if (!data.heroSection.bookTitle) return DEFAULT_CONTENT;
-        return data;
-      } catch {
-        return DEFAULT_CONTENT;
-      }
+      const stored = loadFromStorage();
+      if (stored?.heroSection?.bookTitle) return stored;
+      return DEFAULT_CONTENT;
     },
-    enabled: !isFetching,
-    staleTime: 30_000,
+    staleTime: Number.POSITIVE_INFINITY,
     placeholderData: DEFAULT_CONTENT,
   });
 }
 
 export function useUpdateHeroSection() {
-  const { actor } = useActor();
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (hero: HeroSection) => actor!.updateHeroSection(hero),
+    mutationFn: async (hero: HeroSection) => {
+      const current =
+        qc.getQueryData<PageContent>(["pageContent"]) ?? DEFAULT_CONTENT;
+      const updated = { ...current, heroSection: hero };
+      saveToStorage(updated);
+      qc.setQueryData(["pageContent"], updated);
+    },
     onSuccess: () => qc.invalidateQueries({ queryKey: ["pageContent"] }),
   });
 }
 
 export function useUpdateFeaturesSection() {
-  const { actor } = useActor();
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (features: FeaturesSection) =>
-      actor!.updateFeaturesSection(features),
+    mutationFn: async (features: FeaturesSection) => {
+      const current =
+        qc.getQueryData<PageContent>(["pageContent"]) ?? DEFAULT_CONTENT;
+      const updated = { ...current, featuresSection: features };
+      saveToStorage(updated);
+      qc.setQueryData(["pageContent"], updated);
+    },
     onSuccess: () => qc.invalidateQueries({ queryKey: ["pageContent"] }),
   });
 }
 
 export function useUpdatePricingSection() {
-  const { actor } = useActor();
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (pricing: PricingSection) =>
-      actor!.updatePricingSection(pricing),
+    mutationFn: async (pricing: PricingSection) => {
+      const current =
+        qc.getQueryData<PageContent>(["pageContent"]) ?? DEFAULT_CONTENT;
+      const updated = { ...current, pricingSection: pricing };
+      saveToStorage(updated);
+      qc.setQueryData(["pageContent"], updated);
+    },
     onSuccess: () => qc.invalidateQueries({ queryKey: ["pageContent"] }),
   });
 }
 
 export function useReplaceTestimonials() {
-  const { actor } = useActor();
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (testimonials: Testimonial[]) =>
-      actor!.replaceAllTestimonials(testimonials),
+    mutationFn: async (testimonials: Testimonial[]) => {
+      const current =
+        qc.getQueryData<PageContent>(["pageContent"]) ?? DEFAULT_CONTENT;
+      const updated = { ...current, testimonials };
+      saveToStorage(updated);
+      qc.setQueryData(["pageContent"], updated);
+    },
     onSuccess: () => qc.invalidateQueries({ queryKey: ["pageContent"] }),
   });
 }
 
 export function useUpdateEbookCover() {
-  const { actor } = useActor();
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (url: string) => actor!.updateEbookCoverImageUrl(url),
+    mutationFn: async (url: string) => {
+      const current =
+        qc.getQueryData<PageContent>(["pageContent"]) ?? DEFAULT_CONTENT;
+      const updated = { ...current, ebookCoverImageUrl: url };
+      saveToStorage(updated);
+      qc.setQueryData(["pageContent"], updated);
+    },
     onSuccess: () => qc.invalidateQueries({ queryKey: ["pageContent"] }),
   });
 }

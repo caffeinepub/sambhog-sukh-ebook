@@ -414,7 +414,7 @@ function OrangeDivider({ text }: { text?: string }) {
       className="py-4 text-center"
     >
       <p className="text-white font-bold text-lg tracking-wide">
-        {text ?? "✨ सीमित समय का विशेष ऑफर — अभी पाएं ₹100 की छूट! ✨"}
+        {text ?? "✨ सीमित समय का विशेष ऑफर — आज ही पाएं ₹150 की छूट! ✨"}
       </p>
       <div
         style={{
@@ -578,7 +578,7 @@ function FeaturesSectionComp({
                 color: "var(--teal)",
               }}
             >
-              💡 कुल मूल्य: ₹1500+ का ज्ञान — मात्र ₹199 में!
+              💡 कुल मूल्य: ₹1500+ का ज्ञान — मात्र ₹49 में!
             </div>
           </motion.div>
 
@@ -706,7 +706,7 @@ function PricingSectionComp({
                   className="font-bold text-sm"
                   style={{ color: "var(--teal)" }}
                 >
-                  📱 Scan to Pay
+                  📱 स्कैन करें और भुगतान करें
                 </p>
               </div>
 
@@ -715,7 +715,7 @@ function PricingSectionComp({
                 {/* Original price */}
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-gray-400 text-lg price-strike">
-                    Ord Price: ₹
+                    मूल मूल्य: ₹
                     {editMode ? (
                       <input
                         type="number"
@@ -728,12 +728,13 @@ function PricingSectionComp({
                     ) : (
                       String(d.pricingSection.originalPrice)
                     )}
+                    /-
                   </span>
                   <span
                     className="text-xs font-bold px-2 py-0.5 rounded-full text-white"
                     style={{ background: "#e53e3e" }}
                   >
-                    33% OFF
+                    75% OFF
                   </span>
                 </div>
 
@@ -757,9 +758,10 @@ function PricingSectionComp({
                     ) : (
                       String(d.pricingSection.discountedPrice)
                     )}
+                    /-
                   </span>
                   <span className="text-gray-500 mb-3 text-sm">
-                    only (Limited Time)
+                    केवल (आज का विशेष मूल्य)
                   </span>
                 </div>
 
@@ -780,7 +782,7 @@ function PricingSectionComp({
                   className="rounded-xl p-3 mb-4 text-center"
                   style={{ background: "oklch(0.96 0.03 195)" }}
                 >
-                  <p className="text-xs text-gray-500 mb-1">UPI Link / ID</p>
+                  <p className="text-xs text-gray-500 mb-1">UPI लिंक / आईडी</p>
                   <p className="font-bold" style={{ color: "var(--teal)" }}>
                     {editMode ? (
                       <input
@@ -804,6 +806,39 @@ function PricingSectionComp({
                   </p>
                 </div>
               </div>
+            </div>
+
+            {/* WhatsApp Footer */}
+            <div
+              className="mx-8 mb-4 rounded-2xl flex items-center justify-center gap-3 py-4 px-6"
+              style={{
+                background: "linear-gradient(135deg, #25D366 0%, #128C7E 100%)",
+                boxShadow: "0 4px 16px rgba(37,211,102,0.35)",
+              }}
+            >
+              {/* WhatsApp Icon */}
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                aria-hidden="true"
+                role="img"
+                style={{ flexShrink: 0 }}
+              >
+                <title>WhatsApp</title>
+                <circle cx="16" cy="16" r="16" fill="white" fillOpacity="0.2" />
+                <path
+                  d="M16 5C9.925 5 5 9.925 5 16c0 1.95.525 3.775 1.45 5.35L5 27l5.8-1.425A10.95 10.95 0 0 0 16 27c6.075 0 11-4.925 11-11S22.075 5 16 5zm0 20c-1.725 0-3.35-.45-4.75-1.25l-.35-.2-3.45.9.925-3.35-.225-.375A9 9 0 0 1 7 16c0-4.95 4.05-9 9-9s9 4.05 9 9-4.05 9-9 9zm4.95-6.75c-.275-.125-1.6-.8-1.85-.875-.25-.1-.425-.125-.6.125-.175.25-.7.875-.85 1.05-.15.175-.3.2-.575.075-.275-.125-1.15-.425-2.2-1.35-.825-.725-1.375-1.625-1.525-1.9-.15-.275-.025-.425.125-.55.125-.1.275-.275.425-.425.15-.15.175-.25.275-.425.1-.175.05-.325-.025-.45-.075-.125-.6-1.45-.825-1.975-.225-.525-.45-.45-.6-.45-.15 0-.325-.025-.5-.025s-.45.075-.7.35c-.25.275-.95.925-.95 2.25s.975 2.6 1.1 2.775c.125.175 1.9 2.925 4.625 4.1.65.275 1.15.45 1.55.575.65.2 1.25.175 1.7.1.525-.075 1.6-.65 1.825-1.3.225-.65.225-1.2.15-1.3-.075-.1-.25-.175-.525-.3z"
+                  fill="white"
+                />
+              </svg>
+              <p className="text-white font-bold text-base leading-snug">
+                अपना भुगतान स्क्रीनशॉट भेजें —{" "}
+                <span className="text-yellow-200 font-black text-lg tracking-wide">
+                  6006401799
+                </span>
+              </p>
             </div>
 
             {/* Buy Now Button */}
@@ -831,11 +866,11 @@ function PricingSectionComp({
                 }}
               >
                 <span>🛒</span>
-                <span>Buy Now / अभी खरीदें</span>
+                <span>अभी खरीदें — केवल ₹49/-</span>
                 <span>→</span>
               </a>
               <p className="mt-3 text-xs text-gray-400">
-                💳 सभी UPI, Net Banking, Cards स्वीकृत
+                💳 सभी UPI, नेट बैंकिंग, कार्ड स्वीकृत हैं
               </p>
             </div>
           </div>
@@ -1031,7 +1066,7 @@ function EditPanel({
             <title>Edit icon</title>
             <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
           </svg>
-          Edit Page
+          पेज संपादित करें
         </button>
       ) : (
         <AnimatePresence>
@@ -1048,7 +1083,7 @@ function EditPanel({
               onClick={onCancel}
               className="px-4 py-2 rounded-full text-sm font-bold bg-white shadow text-gray-700 hover:bg-gray-100 transition-colors"
             >
-              Cancel
+              रद्द करें
             </button>
             <button
               type="button"
@@ -1075,7 +1110,7 @@ function EditPanel({
                     <circle cx="12" cy="12" r="10" opacity="0.25" />
                     <path d="M12 2a10 10 0 0 1 10 10" />
                   </svg>
-                  Saving...
+                  सहेजा जा रहा है...
                 </>
               ) : (
                 <>
@@ -1090,7 +1125,7 @@ function EditPanel({
                     <title>Save icon</title>
                     <path d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4zm-5 16a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm3-10H5V5h10v4z" />
                   </svg>
-                  Save Changes
+                  बदलाव सहेजें
                 </>
               )}
             </button>
@@ -1137,17 +1172,17 @@ function AdminAuthModal({
           className="text-xl font-black mb-1"
           style={{ color: "var(--teal)" }}
         >
-          Admin Access
+          एडमिन एक्सेस
         </h3>
         <p className="text-gray-500 text-sm mb-5">
-          Enter password to edit page content
+          पेज संपादित करने के लिए पासवर्ड दर्ज करें
         </p>
         <form onSubmit={handleSubmit}>
           <input
             type="password"
             value={pw}
             onChange={(e) => setPw(e.target.value)}
-            placeholder="Password"
+            placeholder="पासवर्ड"
             className={`w-full border-2 rounded-xl px-4 py-3 mb-3 outline-none text-base transition-colors ${
               error
                 ? "border-red-400 bg-red-50"
@@ -1156,7 +1191,7 @@ function AdminAuthModal({
           />
           {error && (
             <p className="text-red-500 text-sm mb-3 text-center">
-              ❌ Wrong password
+              ❌ गलत पासवर्ड
             </p>
           )}
           <div className="flex gap-3">
@@ -1165,14 +1200,14 @@ function AdminAuthModal({
               onClick={onClose}
               className="flex-1 py-2.5 rounded-xl border-2 border-gray-200 text-gray-600 font-semibold hover:bg-gray-50"
             >
-              Cancel
+              रद्द करें
             </button>
             <button
               type="submit"
               className="flex-1 py-2.5 rounded-xl text-white font-bold"
               style={{ background: "var(--teal)" }}
             >
-              Enter
+              प्रवेश करें
             </button>
           </div>
         </form>
@@ -1200,20 +1235,20 @@ function Footer() {
         </p>
         <div className="flex flex-wrap justify-center gap-6 text-sm mb-4">
           <span className="hover:text-white transition-colors cursor-pointer">
-            Privacy Policy
+            गोपनीयता नीति
           </span>
           <span className="hover:text-white transition-colors cursor-pointer">
-            Terms of Service
+            सेवा शर्तें
           </span>
           <span className="hover:text-white transition-colors cursor-pointer">
-            Contact
+            संपर्क करें
           </span>
           <a
             href="#pricing"
             className="hover:text-white transition-colors"
             style={{ color: "var(--orange-light)" }}
           >
-            Buy Now
+            अभी खरीदें
           </a>
         </div>
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
@@ -1343,8 +1378,7 @@ export default function App() {
             className="sticky top-0 z-40 text-center py-2 text-sm font-semibold text-white"
             style={{ background: "var(--orange)" }}
           >
-            ✏️ Edit Mode Active — Make changes and click "Save Changes" to
-            publish
+            ✏️ संपादन मोड सक्रिय — बदलाव करें और "सहेजें" पर क्लिक करें
           </motion.div>
         )}
       </AnimatePresence>
