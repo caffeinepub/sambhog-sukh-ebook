@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* === Sambhog Sukh Brand Palette === */
+    /* Deep Teal: oklch(0.52 0.12 195) ≈ #008080 */
+    /* Vibrant Orange: oklch(0.72 0.19 46) ≈ #FF8C00 */
+    /* Cream: oklch(0.98 0.01 80) ≈ #FFF8F0 */
+
+    --background: 0.98 0.01 80;
+    --foreground: 0.2 0.02 200;
+
+    --card: 1 0 0;
+    --card-foreground: 0.2 0.02 200;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.2 0.02 200;
+
+    /* Primary = Deep Teal */
+    --primary: 0.52 0.12 195;
+    --primary-foreground: 1 0 0;
+
+    /* Secondary = Vibrant Orange */
+    --secondary: 0.72 0.19 46;
+    --secondary-foreground: 1 0 0;
+
+    --muted: 0.95 0.01 80;
+    --muted-foreground: 0.45 0.02 200;
+
+    --accent: 0.72 0.19 46;
+    --accent-foreground: 1 0 0;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.88 0.02 195;
+    --input: 0.9 0.01 195;
+    --ring: 0.52 0.12 195;
+
+    --chart-1: 0.52 0.12 195;
+    --chart-2: 0.72 0.19 46;
+    --chart-3: 0.65 0.18 160;
+    --chart-4: 0.8 0.12 80;
+    --chart-5: 0.45 0.08 270;
+
+    --sidebar: 0.52 0.12 195;
+    --sidebar-foreground: 1 0 0;
+    --sidebar-primary: 0.72 0.19 46;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.4 0.1 195;
+    --sidebar-accent-foreground: 1 0 0;
+    --sidebar-border: 0.42 0.1 195;
+    --sidebar-ring: 0.72 0.19 46;
+
+    /* Brand custom tokens */
+    --teal: oklch(0.52 0.12 195);
+    --teal-dark: oklch(0.4 0.12 195);
+    --teal-light: oklch(0.65 0.1 195);
+    --orange: oklch(0.72 0.19 46);
+    --orange-dark: oklch(0.6 0.19 46);
+    --orange-light: oklch(0.82 0.15 60);
+    --cream: oklch(0.98 0.01 80);
+    --cream-dark: oklch(0.94 0.02 80);
+    --green-check: oklch(0.6 0.2 142);
+    --gold-star: oklch(0.82 0.18 70);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Editable field highlight */
+  [contenteditable="true"] {
+    outline: 2px dashed var(--orange);
+    outline-offset: 2px;
+    border-radius: 4px;
+    cursor: text;
+    min-width: 40px;
+    display: inline-block;
+  }
+
+  [contenteditable="true"]:focus {
+    outline: 2px solid var(--teal);
+    background: oklch(0.97 0.02 80);
+  }
+}
+
+@layer utilities {
+  .text-teal { color: var(--teal); }
+  .text-orange { color: var(--orange); }
+  .text-cream { color: var(--cream); }
+  .text-green-check { color: var(--green-check); }
+  .text-gold { color: var(--gold-star); }
+
+  .bg-teal { background-color: var(--teal); }
+  .bg-teal-dark { background-color: var(--teal-dark); }
+  .bg-orange { background-color: var(--orange); }
+  .bg-cream { background-color: var(--cream); }
+  .bg-cream-dark { background-color: var(--cream-dark); }
+
+  .border-teal { border-color: var(--teal); }
+  .border-orange { border-color: var(--orange); }
+
+  /* Wave shape */
+  .wave-bottom {
+    position: relative;
+  }
+  .wave-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--cream);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  /* 3D book tilt */
+  .book-3d {
+    transform: perspective(800px) rotateY(-12deg) rotateX(3deg);
+    filter: drop-shadow(20px 20px 30px rgba(0,0,0,0.4));
+    transition: transform 0.3s ease;
+  }
+  .book-3d:hover {
+    transform: perspective(800px) rotateY(-6deg) rotateX(1deg) scale(1.03);
+  }
+
+  /* Editable image overlay */
+  .editable-image-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .editable-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 128, 128, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .editable-image-wrapper:hover .editable-image-overlay {
+    opacity: 1;
+  }
+
+  /* Star ratings */
+  .star-filled { color: var(--gold-star); }
+  .star-empty { color: oklch(0.8 0 0); }
+
+  /* Strikethrough price */
+  .price-strike {
+    text-decoration: line-through;
+    text-decoration-color: oklch(0.6 0.2 27);
+    text-decoration-thickness: 2px;
+  }
+
+  /* UPI badge base */
+  .upi-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .upi-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  }
+}
