@@ -24,7 +24,7 @@ const DEFAULT_CONTENT: PageContent = {
       "वैज्ञानिक और प्राचीन ज्ञान का संगम",
       "प्रीमियम डिजिटल गाइड (PDF)",
     ],
-    lifestyleImageUrl: "/assets/generated/couple-lifestyle.dim_800x600.jpg",
+    lifestyleImageUrl: "/assets/uploads/received_4442140009374418-1.jpeg",
     bonusItems: [
       "बोनस: विशेष आयुर्वेदिक नुस्खे",
       "बोनस: 30 दिन का प्लान",
@@ -36,8 +36,8 @@ const DEFAULT_CONTENT: PageContent = {
   pricingSection: {
     originalPrice: BigInt(199),
     discountedPrice: BigInt(49),
-    upiLink: "#buy",
-    qrCodeImageUrl: "/assets/generated/qr-placeholder.dim_200x200.png",
+    upiLink: "healthgyan1@ybl",
+    qrCodeImageUrl: "/assets/uploads/Screenshot_2026_0308_113647-2.jpg",
   },
   testimonials: [
     {
@@ -100,10 +100,20 @@ export function usePageContent() {
     queryFn: async () => {
       const stored = loadFromStorage();
       if (stored?.heroSection?.bookTitle) {
-        // Always use the latest default ebook cover image
+        // Always use the latest default images and UPI from code
         return {
           ...stored,
           ebookCoverImageUrl: DEFAULT_CONTENT.ebookCoverImageUrl,
+          featuresSection: {
+            ...stored.featuresSection,
+            lifestyleImageUrl:
+              DEFAULT_CONTENT.featuresSection.lifestyleImageUrl,
+          },
+          pricingSection: {
+            ...stored.pricingSection,
+            qrCodeImageUrl: DEFAULT_CONTENT.pricingSection.qrCodeImageUrl,
+            upiLink: DEFAULT_CONTENT.pricingSection.upiLink,
+          },
         };
       }
       return DEFAULT_CONTENT;
