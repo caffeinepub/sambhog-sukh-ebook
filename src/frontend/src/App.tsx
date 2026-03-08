@@ -966,12 +966,30 @@ function PricingSectionComp({
               </div>
             </div>
 
-            {/* WhatsApp Footer — Hindi */}
-            <div
-              className="mx-8 mb-3 rounded-2xl flex items-center justify-center gap-3 py-4 px-6"
+            {/* WhatsApp Button — Hindi */}
+            <a
+              href="https://wa.me/917302101799"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-ocid="pricing.whatsapp_hindi_button"
+              className="mx-8 mb-3 rounded-2xl flex items-center justify-center gap-3 py-4 px-6 transition-all duration-200"
               style={{
                 background: "linear-gradient(135deg, #25D366 0%, #128C7E 100%)",
                 boxShadow: "0 4px 16px rgba(37,211,102,0.35)",
+                textDecoration: "none",
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.transform =
+                  "translateY(-2px)";
+                (e.currentTarget as HTMLElement).style.boxShadow =
+                  "0 8px 24px rgba(37,211,102,0.55)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.transform =
+                  "translateY(0)";
+                (e.currentTarget as HTMLElement).style.boxShadow =
+                  "0 4px 16px rgba(37,211,102,0.35)";
               }}
             >
               {/* WhatsApp Icon */}
@@ -997,14 +1015,32 @@ function PricingSectionComp({
                   7302101799
                 </span>
               </p>
-            </div>
+            </a>
 
-            {/* WhatsApp Footer — English */}
-            <div
-              className="mx-8 mb-4 rounded-2xl flex items-center justify-center gap-3 py-4 px-6"
+            {/* WhatsApp Button — English */}
+            <a
+              href="https://wa.me/917302101799"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-ocid="pricing.whatsapp_english_button"
+              className="mx-8 mb-4 rounded-2xl flex items-center justify-center gap-3 py-4 px-6 transition-all duration-200"
               style={{
                 background: "linear-gradient(135deg, #25D366 0%, #128C7E 100%)",
                 boxShadow: "0 4px 16px rgba(37,211,102,0.35)",
+                textDecoration: "none",
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.transform =
+                  "translateY(-2px)";
+                (e.currentTarget as HTMLElement).style.boxShadow =
+                  "0 8px 24px rgba(37,211,102,0.55)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.transform =
+                  "translateY(0)";
+                (e.currentTarget as HTMLElement).style.boxShadow =
+                  "0 4px 16px rgba(37,211,102,0.35)";
               }}
             >
               {/* WhatsApp Icon */}
@@ -1030,7 +1066,7 @@ function PricingSectionComp({
                   7302101799
                 </span>
               </p>
-            </div>
+            </a>
 
             {/* Buy Now Button */}
             <div className="px-8 pb-8 text-center">
