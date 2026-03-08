@@ -35,9 +35,9 @@ const DEFAULT_CONTENT: PageContent = {
   ebookCoverImageUrl: "/assets/uploads/1772906864272-1-1.png",
   pricingSection: {
     originalPrice: BigInt(199),
-    discountedPrice: BigInt(49),
+    discountedPrice: BigInt(99),
     upiLink: "healthgyan1@ybl",
-    qrCodeImageUrl: "/assets/uploads/Screenshot_2026_0308_113647-2.jpg",
+    qrCodeImageUrl: "/assets/uploads/IMG_20260308_172252-1.jpg",
   },
   testimonials: [
     {

@@ -414,7 +414,7 @@ function OrangeDivider({ text }: { text?: string }) {
       className="py-4 text-center"
     >
       <p className="text-white font-bold text-lg tracking-wide">
-        {text ?? "✨ सीमित समय का विशेष ऑफर — आज ही पाएं ₹150 की छूट! ✨"}
+        {text ?? "✨ सीमित समय का विशेष ऑफर — आज ही पाएं ₹100 की छूट! ✨"}
       </p>
       <div
         style={{
@@ -510,7 +510,7 @@ function AboutSection() {
     {
       id: "offer",
       type: "offer",
-      text: "सीमित समय का ऑफर:\nअभी यह संपूर्ण मार्गदर्शिका मात्र ₹49 में उपलब्ध है। अपने और अपने पार्टनर के सुखद भविष्य के लिए आज ही निवेश करें।",
+      text: "सीमित समय का ऑफर:\nअभी यह संपूर्ण मार्गदर्शिका मात्र ₹99 में उपलब्ध है। अपने और अपने पार्टनर के सुखद भविष्य के लिए आज ही निवेश करें।",
     },
     {
       id: "disclaimer",
@@ -765,7 +765,7 @@ function FeaturesSectionComp({
                 color: "var(--teal)",
               }}
             >
-              💡 कुल मूल्य: ₹1500+ का ज्ञान — मात्र ₹49 में!
+              💡 कुल मूल्य: ₹1500+ का ज्ञान — मात्र ₹99 में!
             </div>
           </motion.div>
 
@@ -963,35 +963,6 @@ function PricingSectionComp({
                     <Paytm />
                   </div>
                 </div>
-
-                {/* UPI ID */}
-                <div
-                  className="rounded-xl p-3 mb-4 text-center"
-                  style={{ background: "oklch(0.96 0.03 195)" }}
-                >
-                  <p className="text-xs text-gray-500 mb-1">UPI लिंक / आईडी</p>
-                  <p className="font-bold" style={{ color: "var(--teal)" }}>
-                    {editMode ? (
-                      <input
-                        type="text"
-                        value={draft.pricingSection.upiLink}
-                        onChange={(e) =>
-                          setDraft((prev) => ({
-                            ...prev,
-                            pricingSection: {
-                              ...prev.pricingSection,
-                              upiLink: e.target.value,
-                            },
-                          }))
-                        }
-                        className="w-full text-center bg-transparent border-b border-dashed border-teal-400 outline-none font-bold"
-                        style={{ color: "var(--teal)" }}
-                      />
-                    ) : (
-                      d.pricingSection.upiLink
-                    )}
-                  </p>
-                </div>
               </div>
             </div>
 
@@ -1053,7 +1024,7 @@ function PricingSectionComp({
                 }}
               >
                 <span>🛒</span>
-                <span>अभी खरीदें — केवल ₹49/-</span>
+                <span>अभी खरीदें — केवल ₹99/-</span>
                 <span>→</span>
               </a>
               <p className="mt-3 text-xs text-gray-400">
@@ -1233,18 +1204,19 @@ function EditPanel({
   isSaving,
 }: EditPanelProps) {
   return (
-    <div className="fixed top-4 right-4 z-50 flex flex-col items-end gap-2">
+    <div className="fixed bottom-4 left-4 z-50 flex flex-col items-start gap-2">
       {!editMode ? (
         <button
           type="button"
           data-ocid="edit.toggle_button"
           onClick={onToggle}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-full text-white text-sm font-bold shadow-teal transition-all hover:scale-105"
+          title="पेज संपादित करें"
+          className="w-9 h-9 rounded-full flex items-center justify-center text-white shadow-md transition-all hover:scale-110 opacity-60 hover:opacity-100"
           style={{ background: "var(--teal)" }}
         >
           <svg
-            width="16"
-            height="16"
+            width="15"
+            height="15"
             viewBox="0 0 24 24"
             fill="white"
             aria-hidden="true"
@@ -1253,15 +1225,14 @@ function EditPanel({
             <title>Edit icon</title>
             <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
           </svg>
-          पेज संपादित करें
         </button>
       ) : (
         <AnimatePresence>
           <motion.div
             key="edit-controls"
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            exit={{ opacity: 0, y: 10 }}
             className="flex items-center gap-2"
           >
             <button
@@ -1337,7 +1308,7 @@ function AdminAuthModal({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (pw === "admin123") {
+    if (pw === "hrcm2026") {
       onAuth();
     } else {
       setError(true);
