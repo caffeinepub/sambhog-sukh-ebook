@@ -12,8 +12,7 @@ const STORAGE_KEY = "sambhog_sukh_page_content";
 const DEFAULT_CONTENT: PageContent = {
   heroSection: {
     bookTitle: "सम्भोग सुख",
-    subtitle:
-      "वैवाहिक जीवन के आयुर्वेदिक और गार्हस्थिक रहस्य — वो बातें जो कोई नहीं बताता",
+    subtitle: "पूर्ण मार्गदर्शिका: वैवाहिक जीवन के आयुर्वेदिक और प्राकृतिक रहस्य",
     tagline: "वो बातें जो कोई आपको नहीं बताता",
     ctaButtonText: "अभी खरीदें",
     ctaLink: "#pricing",
@@ -33,7 +32,7 @@ const DEFAULT_CONTENT: PageContent = {
       "बोनस: आजीवन अपडेट",
     ],
   },
-  ebookCoverImageUrl: "/assets/generated/ebook-cover.dim_400x560.png",
+  ebookCoverImageUrl: "/assets/uploads/1772906864272-1-1.png",
   pricingSection: {
     originalPrice: BigInt(199),
     discountedPrice: BigInt(49),
@@ -100,7 +99,13 @@ export function usePageContent() {
     queryKey: ["pageContent"],
     queryFn: async () => {
       const stored = loadFromStorage();
-      if (stored?.heroSection?.bookTitle) return stored;
+      if (stored?.heroSection?.bookTitle) {
+        // Always use the latest default ebook cover image
+        return {
+          ...stored,
+          ebookCoverImageUrl: DEFAULT_CONTENT.ebookCoverImageUrl,
+        };
+      }
       return DEFAULT_CONTENT;
     },
     staleTime: Number.POSITIVE_INFINITY,

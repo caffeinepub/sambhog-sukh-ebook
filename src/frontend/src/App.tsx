@@ -443,6 +443,193 @@ function OrangeDivider({ text }: { text?: string }) {
   );
 }
 
+// ─── About The Page Section ──────────────────────────────────────────────────
+
+function AboutSection() {
+  const paragraphs = [
+    {
+      id: "intro",
+      type: "intro",
+      text: "क्या आप अपने निजी जीवन को फिर से खुशहाल और ऊर्जावान बनाना चाहते हैं?",
+    },
+    {
+      id: "body1",
+      type: "body",
+      text: "आज की व्यस्त जीवनशैली और तनाव का सबसे बड़ा असर हमारे आपसी रिश्तों और शारीरिक स्वास्थ्य पर पड़ता है। यह ई-बुक विशेष रूप से उन पुरुषों के लिए तैयार की गई है जो बिना किसी हानिकारक दवा के, पूरी तरह प्राकृतिक और वैज्ञानिक तरीके से अपने वैवाहिक जीवन में नया जोश भरना चाहते हैं।",
+    },
+    {
+      id: "h1",
+      type: "heading",
+      text: "इस ई-बुक में आपको क्या मिलेगा?",
+    },
+    {
+      id: "body2",
+      type: "body",
+      text: "यह कोई साधारण किताब नहीं है, बल्कि एक व्यापक गाइड है जो आपको सिखाती है:",
+    },
+    {
+      id: "pt1",
+      type: "point",
+      text: "......मानसिक मजबूती: बिस्तर पर होने वाली घबराहट (Performance Anxiety) को जड़ से खत्म करने के मनोवैज्ञानिक तरीके।",
+    },
+    {
+      id: "pt2",
+      type: "point",
+      text: "......प्राकृतिक उपचार: आयुर्वेद की प्राचीन वाजीकरण पद्धति का सही उपयोग, जैसे अश्वगंधा और मूसली के लाभ।",
+    },
+    {
+      id: "pt3",
+      type: "point",
+      text: "......व्यावहारिक तकनीकें: पार्टनर के साथ आपसी तालमेल और संतुष्टि के सही तरीके और फोरप्ले का महत्व।",
+    },
+    {
+      id: "pt4",
+      type: "point",
+      text: "......डाइट और लाइफस्टाइल: वो खास खाद्य पदार्थ जो प्राकृतिक रूप से आपके शरीर की शक्ति और स्टैमिना को बढ़ाते हैं।",
+    },
+    {
+      id: "h2",
+      type: "heading",
+      text: "आपको यह गाइड क्यों खरीदनी चाहिए?",
+    },
+    {
+      id: "pt5",
+      type: "point",
+      text: "100% गोपनीय और सुरक्षित: यह एक डिजिटल PDF है जिसे आप पेमेंट के तुरंत बाद डाउनलोड कर सकते हैं। आपकी जानकारी पूरी तरह प्राइवेट रखी जाती है।",
+    },
+    {
+      id: "pt6",
+      type: "point",
+      text: ".....सच्ची और सटीक जानकारी: इंटरनेट की आधी-अधूरी और भ्रामक जानकारी के बजाय, यह गाइड विज्ञान और आयुर्वेद पर आधारित है।",
+    },
+    {
+      id: "pt7",
+      type: "point",
+      text: "......नया आत्मविश्वास: यह गाइड आपको न केवल शारीरिक रूप से बल्कि मानसिक रूप से भी बेहतर महसूस कराएगी, जिससे आपके रिश्तों में नयापन आएगा।",
+    },
+    {
+      id: "offer",
+      type: "offer",
+      text: "सीमित समय का ऑफर:\nअभी यह संपूर्ण मार्गदर्शिका मात्र ₹49 में उपलब्ध है। अपने और अपने पार्टनर के सुखद भविष्य के लिए आज ही निवेश करें।",
+    },
+    {
+      id: "disclaimer",
+      type: "disclaimer",
+      text: "(Legal Disclaimer)\nयह ई-बुक केवल शैक्षिक जानकारी प्रदान करने के लिए है।",
+    },
+  ] as const;
+
+  return (
+    <section className="py-14" style={{ background: "var(--cream)" }}>
+      <div className="max-w-4xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          {/* Section Title */}
+          <div className="flex items-center gap-3 mb-8">
+            <div
+              className="w-1 rounded-full"
+              style={{ height: 40, background: "var(--teal)" }}
+            />
+            <h2
+              className="text-2xl font-black tracking-wide"
+              style={{ color: "var(--teal)" }}
+            >
+              ABOUT THE PAGE
+            </h2>
+          </div>
+
+          <div className="bg-white rounded-2xl p-8 shadow-card space-y-5">
+            {paragraphs.map((para) => {
+              if (para.type === "intro") {
+                return (
+                  <p
+                    key={para.id}
+                    className="text-lg font-bold leading-relaxed"
+                    style={{ color: "var(--teal)" }}
+                  >
+                    {para.text}
+                  </p>
+                );
+              }
+              if (para.type === "heading") {
+                return (
+                  <p
+                    key={para.id}
+                    className="text-base font-black pt-2"
+                    style={{ color: "var(--orange)" }}
+                  >
+                    {para.text}
+                  </p>
+                );
+              }
+              if (para.type === "point") {
+                return (
+                  <p
+                    key={para.id}
+                    className="text-sm leading-relaxed text-gray-700 pl-2 border-l-2"
+                    style={{ borderColor: "var(--teal)" }}
+                  >
+                    {para.text}
+                  </p>
+                );
+              }
+              if (para.type === "offer") {
+                const [offerTitle, offerBody] = para.text.split("\n");
+                return (
+                  <div
+                    key={para.id}
+                    className="rounded-xl p-4 mt-2"
+                    style={{
+                      background: "oklch(0.96 0.04 50)",
+                      border: "1px solid var(--orange)",
+                    }}
+                  >
+                    <p
+                      className="text-sm leading-relaxed font-bold mb-1"
+                      style={{ color: "var(--orange)" }}
+                    >
+                      {offerTitle}
+                    </p>
+                    <p className="text-sm leading-relaxed text-gray-700">
+                      {offerBody}
+                    </p>
+                  </div>
+                );
+              }
+              if (para.type === "disclaimer") {
+                const [disclTitle, disclBody] = para.text.split("\n");
+                return (
+                  <div key={para.id} className="pt-2 border-t border-gray-100">
+                    <p className="text-xs leading-relaxed font-semibold text-gray-500 mb-0.5">
+                      {disclTitle}
+                    </p>
+                    <p className="text-xs leading-relaxed text-gray-400">
+                      {disclBody}
+                    </p>
+                  </div>
+                );
+              }
+              // body
+              return (
+                <p
+                  key={para.id}
+                  className="text-sm leading-relaxed text-gray-700"
+                >
+                  {para.text}
+                </p>
+              );
+            })}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 function FeaturesSectionComp({
   content,
   editMode,
@@ -1386,6 +1573,7 @@ export default function App() {
       <main>
         <HeroSectionComp {...sectionProps} />
         <OrangeDivider />
+        <AboutSection />
         <FeaturesSectionComp {...sectionProps} />
         <PricingSectionComp {...sectionProps} />
         <TestimonialsSectionComp {...sectionProps} />
