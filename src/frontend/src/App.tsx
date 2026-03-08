@@ -966,9 +966,9 @@ function PricingSectionComp({
               </div>
             </div>
 
-            {/* WhatsApp Footer */}
+            {/* WhatsApp Footer — Hindi */}
             <div
-              className="mx-8 mb-4 rounded-2xl flex items-center justify-center gap-3 py-4 px-6"
+              className="mx-8 mb-3 rounded-2xl flex items-center justify-center gap-3 py-4 px-6"
               style={{
                 background: "linear-gradient(135deg, #25D366 0%, #128C7E 100%)",
                 boxShadow: "0 4px 16px rgba(37,211,102,0.35)",
@@ -994,7 +994,40 @@ function PricingSectionComp({
               <p className="text-white font-bold text-base leading-snug">
                 अपना भुगतान स्क्रीनशॉट भेजें —{" "}
                 <span className="text-yellow-200 font-black text-lg tracking-wide">
-                  6006401799
+                  7302101799
+                </span>
+              </p>
+            </div>
+
+            {/* WhatsApp Footer — English */}
+            <div
+              className="mx-8 mb-4 rounded-2xl flex items-center justify-center gap-3 py-4 px-6"
+              style={{
+                background: "linear-gradient(135deg, #25D366 0%, #128C7E 100%)",
+                boxShadow: "0 4px 16px rgba(37,211,102,0.35)",
+              }}
+            >
+              {/* WhatsApp Icon */}
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                aria-hidden="true"
+                role="img"
+                style={{ flexShrink: 0 }}
+              >
+                <title>WhatsApp</title>
+                <circle cx="16" cy="16" r="16" fill="white" fillOpacity="0.2" />
+                <path
+                  d="M16 5C9.925 5 5 9.925 5 16c0 1.95.525 3.775 1.45 5.35L5 27l5.8-1.425A10.95 10.95 0 0 0 16 27c6.075 0 11-4.925 11-11S22.075 5 16 5zm0 20c-1.725 0-3.35-.45-4.75-1.25l-.35-.2-3.45.9.925-3.35-.225-.375A9 9 0 0 1 7 16c0-4.95 4.05-9 9-9s9 4.05 9 9-4.05 9-9 9zm4.95-6.75c-.275-.125-1.6-.8-1.85-.875-.25-.1-.425-.125-.6.125-.175.25-.7.875-.85 1.05-.15.175-.3.2-.575.075-.275-.125-1.15-.425-2.2-1.35-.825-.725-1.375-1.625-1.525-1.9-.15-.275-.025-.425.125-.55.125-.1.275-.275.425-.425.15-.15.175-.25.275-.425.1-.175.05-.325-.025-.45-.075-.125-.6-1.45-.825-1.975-.225-.525-.45-.45-.6-.45-.15 0-.325-.025-.5-.025s-.45.075-.7.35c-.25.275-.95.925-.95 2.25s.975 2.6 1.1 2.775c.125.175 1.9 2.925 4.625 4.1.65.275 1.15.45 1.55.575.65.2 1.25.175 1.7.1.525-.075 1.6-.65 1.825-1.3.225-.65.225-1.2.15-1.3-.075-.1-.25-.175-.525-.3z"
+                  fill="white"
+                />
+              </svg>
+              <p className="text-white font-bold text-base leading-snug">
+                Send your Payment Screenshot to —{" "}
+                <span className="text-yellow-200 font-black text-lg tracking-wide">
+                  7302101799
                 </span>
               </p>
             </div>

@@ -113,6 +113,8 @@ export function usePageContent() {
             ...stored.pricingSection,
             qrCodeImageUrl: DEFAULT_CONTENT.pricingSection.qrCodeImageUrl,
             upiLink: DEFAULT_CONTENT.pricingSection.upiLink,
+            originalPrice: DEFAULT_CONTENT.pricingSection.originalPrice,
+            discountedPrice: DEFAULT_CONTENT.pricingSection.discountedPrice,
           },
         };
       }
